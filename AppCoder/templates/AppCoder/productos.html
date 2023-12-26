@@ -1,0 +1,13 @@
+{% extends 'AppCoder/padre.html' %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<div class="row">
+    <div class="col-sm-12 d-flex justify-content-around">
+        <span>Productos</span>
+        <a class="btn btn-primary" href="{% url 'productosFormulario' %}">NUEVO</a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'AppCoder/padre.html' %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<div class="row">
+    <div class="col-sm-12 d-flex justify-content-center">
+        <h5>Registro de Productos</h5>
+    </div>
+</div>
+
+<form action="/cursoFormulario">{% csrf_token %}
+
+    <label for="nombre">Nombre</label>
+    <input type="text" class="form-control mb-2" name="nombre">
+
+    <label for="categorias">Categorías</label>
+    <input type="text" class="form-control mb-2" name="categorias">
+
+    <label for="precio">Precio</label>
+    <input type="text" class="form-control mb-2" name="precio">
+
+    <label for="stock">Stock</label>
+    <input type="text" class="form-control mb-2" name="stock">
+
+
+    <input type="submit" value="Enviar" class="btn btn-primary mt-2">
+</form>
+
+{% endblock %}
