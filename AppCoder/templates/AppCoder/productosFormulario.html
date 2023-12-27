@@ -3,28 +3,25 @@
 
 {% block contenidoQueCambia %}
 
-<div class="row">
-    <div class="col-sm-12 d-flex justify-content-center">
-        <h5>Registro de Productos</h5>
-    </div>
-</div>
+    {% if frmProductos.errors %}
 
-<form action="/cursoFormulario">{% csrf_token %}
+        <p style="color: red">Estan mal los datos, revisar</p>
 
-    <label for="nombre">Nombre</label>
-    <input type="text" class="form-control mb-2" name="nombre">
-
-    <label for="categorias">Categorías</label>
-    <input type="text" class="form-control mb-2" name="categorias">
-
-    <label for="precio">Precio</label>
-    <input type="text" class="form-control mb-2" name="precio">
-
-    <label for="stock">Stock</label>
-    <input type="text" class="form-control mb-2" name="stock">
+    {% endif %}
 
 
-    <input type="submit" value="Enviar" class="btn btn-primary mt-2">
-</form>
+    <h5>Productos</h5>
+
+    <form action="" method="POST">{% csrf_token %}
+
+        <table class="table table-bordered">
+
+            {{ frmProductos.as_table }}
+
+        </table>
+
+        <input type="submit" value="Enviar">
+
+    </form>
 
 {% endblock %}

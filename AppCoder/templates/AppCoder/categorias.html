@@ -3,6 +3,11 @@
 
 {% block contenidoQueCambia %}
 
-    <p>Se ha heredado todo desde la plantilla padre</p>
+<div class="row">
+    <div class="col-sm-12 d-flex justify-content-around">
+        <span>Categorías</span>
+        <a class="btn btn-primary" href="{% url 'categoriasFormulario' %}">NUEVO</a>
+    </div>
+</div>
 
 {% endblock %}
