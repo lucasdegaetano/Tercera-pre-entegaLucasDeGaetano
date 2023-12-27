@@ -1,16 +1,29 @@
 from django.shortcuts import render
 from AppCoder.models import Categorias,Productos,Clientes
 from AppCoder.forms import CategoriasFormulario, ProductosFormulario,ClientesFormulario
+from django.http import HttpResponse 
 
 # Create your views here.
 def inicio(request):
-    return render(request,'AppCoder/inicio.html')
+    
+    productos = Productos.objects.all()
+    return render(request, "AppCoder/inicio.html", {"productos":productos})  
+
 def productos(request):
-    return render(request,'AppCoder/productos.html')
+
+    productos = Productos.objects.all()
+    return render(request, "AppCoder/productos.html", {"productos":productos})    
+
 def clientes(request):
-    return render(request,'AppCoder/clientes.html')
+
+    clientes = Clientes.objects.all()
+    return render(request, "AppCoder/clientes.html", {"clientes":clientes})   
+
+
 def categorias(request):
-    return render(request,'AppCoder/categorias.html')
+    
+    categorias = Categorias.objects.all()
+    return render(request, "AppCoder/categorias.html", {"categorias":categorias})  
 
 
 def productosFormulario(request):
@@ -68,7 +81,8 @@ def clientesFormulario(request):
                                 celular = celular)
             clientes.save()
 
-            return render(request, "AppCoder/inicio.html")      
+            clientes = Clientes.objects.all()
+            return render(request, "AppCoder/clientes.html", {"clientes":clientes})    
 
     else:
 
@@ -98,7 +112,8 @@ def productosFormulario(request):
                                   stock = stock)
             productos.save()
 
-            return render(request, "AppCoder/inicio.html")      
+            productos = Productos.objects.all()
+            return render(request, "AppCoder/productos.html", {"productos":productos})     
 
     else:
 
@@ -120,7 +135,8 @@ def categoriasFormulario(request):
             categoria = Categorias(nombre=data['nombre'])
             categoria.save()
 
-            return render(request, "AppCoder/inicio.html")
+            categorias = Categorias.objects.all()
+            return render(request, "AppCoder/categorias.html", {"categorias":categorias})    
         
     else:
 
@@ -128,4 +144,24 @@ def categoriasFormulario(request):
     
     return render(request, "AppCoder/categoriasFormulario.html", {"frmCategorias":frmCategorias})
         
+def formBuscarProducto(request):
 
+    return render(request, 'AppCoder/busquedaProducto.html')
+
+
+def buscarProducto(request):
+
+    if request.method == "GET":    
+
+        nombre = request.GET.get("producto")
+
+        #return HttpResponse(f"Esta buscando: {nombre}")
+
+        if nombre is None:
+
+            return HttpResponse("Debe completar el campo producto")
+        
+        else:
+
+            productos = Productos.objects.filter(nombre__icontains=nombre)
+            return render(request, "AppCoder/resultadosBuscarProducto.html", {"productos":productos})    

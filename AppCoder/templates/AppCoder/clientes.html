@@ -3,11 +3,41 @@
 
 {% block contenidoQueCambia %}
 
-    <div class="row">
-        <div class="col-sm-12 d-flex justify-content-around">
-            <span>Clientes</span>
-            <a class="btn btn-primary" href="{% url 'clientesFormulario' %}">NUEVO</a>
-        </div>
-    </div>
+<table class="table table-bordered">
+
+    <tr>
+        <td colspan="4"><b>Clientes</b></td>
+        <td class="d-flex justify-content-end">
+            <a class="btn btn-primary btn-sm" href="{% url 'clientesFormulario' %}">NUEVO</a>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Nombre</td>
+        <td>Apellido</td>
+        <td>Dni</td>
+        <td>Email</td>
+        <td>Celular</td>
+    </tr>
+
+{% if clientes %}
+
+    {% for cliente in clientes %}            
+
+        <tr>
+            <td>{{ cliente.nombre }}</td>
+            <td>{{ cliente.apellido }}</td>
+            <td>{{ cliente.dni }}</td>
+            <td>{{ cliente.email }}</td>
+            <td>{{ cliente.celular }}</td>
+        </tr>
+
+
+    {% endfor %}
+
+{% endif %}
+
+</table>
+
 
 {% endblock %}

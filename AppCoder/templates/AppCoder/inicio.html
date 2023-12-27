@@ -3,6 +3,34 @@
 
 {% block contenidoQueCambia %}
 
-    <p>Se ha heredado todo desde la plantilla padre</p>
+<table class="table table-bordered">
+
+    <tr>
+        <td colspan="3"><b>Estos son nuestros productos</b></td>
+    </tr>
+
+    <tr>
+        <td>Nombre</td>
+        <td>Precio</td>
+        <td>Stock</td>
+    </tr>
+
+{% if productos %}
+
+    {% for producto in productos %}            
+
+        <tr>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.precio }}</td>
+            <td>{{ producto.stock }}</td>
+        </tr>
+
+
+    {% endfor %}
+
+{% endif %}
+
+</table>
+
 
 {% endblock %}

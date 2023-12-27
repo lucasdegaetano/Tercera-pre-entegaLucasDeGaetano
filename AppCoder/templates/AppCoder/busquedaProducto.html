@@ -1,0 +1,15 @@
+{% extends 'AppCoder/padre.html' %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<h5>Buscar Productos</h5>
+
+<form action="{% url 'buscarProducto' %}" method="GET">
+
+    <input type="text" name="producto" id="producto">
+    <input type="submit" value="Enviar">
+
+</form>
+
+{% endblock %}

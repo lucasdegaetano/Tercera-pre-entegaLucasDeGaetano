@@ -3,11 +3,35 @@
 
 {% block contenidoQueCambia %}
 
-<div class="row">
-    <div class="col-sm-12 d-flex justify-content-around">
-        <span>Categorías</span>
-        <a class="btn btn-primary" href="{% url 'categoriasFormulario' %}">NUEVO</a>
-    </div>
-</div>
+<table class="table table-bordered">
+
+    <tr>
+        <td><b>Categorías</b></td>
+        <td class="d-flex justify-content-end">
+            <a class="btn btn-primary btn-sm" href="{% url 'categoriasFormulario' %}">NUEVO</a>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Id</td>
+        <td>Nombre</td>
+    </tr>
+
+{% if categorias %}
+
+    {% for categoria in categorias %}            
+
+        <tr>
+            <td>{{ categoria.id }}</td>
+            <td>{{ categoria.nombre }}</td>
+        </tr>
+
+
+    {% endfor %}
+
+{% endif %}
+
+</table>
+
 
 {% endblock %}
